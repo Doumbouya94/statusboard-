@@ -1,38 +1,260 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #f5f5f5;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* LOGIN */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 12px;
+  width: 340px;
+}
+
+.login-logo {
+  width: 50px;
+  height: 50px;
+  background: #6c63ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  font-weight: bold;
+  font-size: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.login-box h2 { font-size: 22px; }
+.login-box p { color: #888; font-size: 14px; }
+
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
 }
+
+.login-box button:hover { background: #f0f0f0; }
+
+/* BOARD */
+.board-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.board-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 34px;
+  height: 34px;
+  background: #6c63ff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.board-title h1 { font-size: 18px; }
+
+.online-badge {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.connected-as { color: #888; font-size: 14px; }
+
+.board-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* SIDEBAR */
+.board-sidebar {
+  width: 200px;
+  background: white;
+  border-right: 1px solid #eee;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.board-sidebar h3 {
+  font-size: 12px;
+  color: #aaa;
+  letter-spacing: 1px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.stat-item span:last-child { margin-left: auto; }
+
+.stat-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: auto;
+  color: #555;
+}
+
+.dot { font-size: 12px; }
+.dot.green { color: green; }
+.dot.orange { color: orange; }
+.dot.red { color: red; }
+
+/* MAIN */
+.board-main {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.board-main h2 { font-size: 16px; color: #555; }
+
+.members-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* MEMBER CARD */
+.member-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid #eee;
+}
+
+.member-card.current-user {
+  border: 2px solid #6c63ff;
+}
+
+.member-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.member-name { font-weight: bold; font-size: 15px; }
+.member-role { font-size: 12px; color: #aaa; }
+.member-status { font-size: 13px; }
+
+.status-buttons {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.status-buttons button {
+  flex: 1;
+  padding: 5px 4px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+  background: white;
+}
+
+.btn-online:hover { background: #e8f5e9; }
+.btn-absent:hover { background: #fff8e1; }
+.btn-busy:hover { background: #ffebee; }
+
+/* EVENTS */
+.events-section { display: flex; flex-direction: column; gap: 10px; }
+
+.events-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.events-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.event-time { margin-left: auto; color: #aaa; font-size: 13px; }
+
+/* FOOTER */
+.board-footer {
+  padding: 8px 24px;
+  background: white;
+  border-top: 1px solid #eee;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.socket-status { color: green; }

@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
     console.log('Nouvelle connexion :', socket.id);
 
     socket.on('user:join', ({ name }) => {
-        members[socket.id] = { name, status: 'En ligne' };
+        members[socket.id] = { id: socket.id, name, status: 'En ligne' };
         io.emit('members:update', Object.values(members));
         console.log(`${name} a rejoint le board`);
     });
