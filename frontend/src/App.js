@@ -4,7 +4,7 @@ import LoginForm from './components/LoginForm';
 import StatusBoard from './components/StatusBoard';
 import './App.css';
 
-const socket = io('http://localhost:3001');
+const socket = io('https://statusboard-cv7y.onrender.com');
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -15,7 +15,6 @@ function App() {
     socket.on('members:update', (updatedMembers) => {
       setMembers(updatedMembers);
     });
-
     return () => {
       socket.off('members:update');
     };
@@ -29,7 +28,6 @@ function App() {
 
   const handleStatusChange = (status) => {
     socket.emit('status:change', { status });
-    const time = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
     addEvent(`${currentUser} → ${status}`);
   };
 
@@ -43,12 +41,12 @@ function App() {
   }
 
   return (
-      <StatusBoard
-          members={members}
-          currentUser={currentUser}
-          onStatusChange={handleStatusChange}
-          events={events}
-      />
+    <StatusBoard
+      members={members}
+      currentUser={currentUser}
+      onStatusChange={handleStatusChange}
+      events={events}
+    />
   );
 }
 
